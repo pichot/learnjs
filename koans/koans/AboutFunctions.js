@@ -6,7 +6,7 @@ describe("about functions", function() {
       return a + b;
     }
 
-    expect(add(1, 2)).toBe(FILL_ME_IN);
+    expect(add(1, 2)).toBe(3);
   });
 
   it("should know internal variables override outer variables", function () {
@@ -21,9 +21,9 @@ describe("about functions", function() {
       return message;
     }
 
-    expect(getMessage()).toBe(FILL_ME_IN);
-    expect(overrideMessage()).toBe(FILL_ME_IN);
-    expect(message).toBe(FILL_ME_IN);
+    expect(getMessage()).toBe("Outer");
+    expect(overrideMessage()).toBe("Inner");
+    expect(message).toBe("Outer");
   });
 
   it("should have lexical scoping", function () {
@@ -35,7 +35,7 @@ describe("about functions", function() {
       }
       return childfunction();
     }
-    expect(parentfunction()).toBe(FILL_ME_IN);
+    expect(parentfunction()).toBe('local');
   });
 
   it("should use lexical scoping to synthesise functions", function () {
@@ -52,7 +52,7 @@ describe("about functions", function() {
     var mysteryFunction3 = makeMysteryFunction(3);
     var mysteryFunction5 = makeMysteryFunction(5);
 
-    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(FILL_ME_IN);
+    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(23);
   });
 
   it("should allow extra function arguments", function () {
@@ -61,13 +61,13 @@ describe("about functions", function() {
       return firstArg;
     }
 
-    expect(returnFirstArg("first", "second", "third")).toBe(FILL_ME_IN);
+    expect(returnFirstArg("first", "second", "third")).toBe("first");
 
     function returnSecondArg(firstArg, secondArg) {
       return secondArg;
     }
 
-    expect(returnSecondArg("only give first arg")).toBe(FILL_ME_IN);
+    expect(returnSecondArg("only give first arg")).toBe(undefined);
 
     function returnAllArgs() {
       var argsArray = [];
@@ -77,7 +77,7 @@ describe("about functions", function() {
       return argsArray.join(",");
     }
 
-    expect(returnAllArgs("first", "second", "third")).toBe(FILL_ME_IN);
+    expect(returnAllArgs("first", "second", "third")).toBe('first,second,third');
   });
 
   it("should pass functions as values", function () {
@@ -91,29 +91,29 @@ describe("about functions", function() {
     };
 
     var praiseSinger = { givePraise: appendRules };
-    expect(praiseSinger.givePraise("John")).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise("John")).toBe("John rules!");
 
     praiseSinger.givePraise = appendDoubleRules;
-    expect(praiseSinger.givePraise("Mary")).toBe(FILL_ME_IN);
+    expect(praiseSinger.givePraise("Mary")).toBe("Mary totally rules!");
 
   });
 
   it('should serve as a blueprint or "constructor" for objects when used with the "new" keyword', function() {
-    function Book(title, genre, pageCount) {
-      this.title = title;
-      this.genre = genre;
-      this.pageCount = pageCount;
+    function Book(bookTitle, bookGenre, thePageCount) {
+      this.title = bookTitle;
+      this.genre = bookGenre;
+      this.pageCount = thePageCount;
     }
 
     var nodeBook = new Book("Node.js the Right Way", "Programming", 126),
         theGoodParts = new Book("JavaScript: The Good Parts", "Programming", 140);
 
-    expect(nodeBook.title).toEqual(FILL_ME_IN);
-    expect(nodeBook.genre).toEqual(FILL_ME_IN);
-    expect(nodeBook.pageCount).toEqual(FILL_ME_IN);
+    expect(nodeBook.title).toEqual("Node.js the Right Way");
+    expect(nodeBook.genre).toEqual("Programming");
+    expect(nodeBook.pageCount).toEqual(126);
 
-    expect(theGoodParts.title).toEqual(FILL_ME_IN);
-    expect(theGoodParts.genre).toEqual(FILL_ME_IN);
-    expect(theGoodParts.pageCount).toEqual(FILL_ME_IN);
+    expect(theGoodParts.title).toEqual("JavaScript: The Good Parts");
+    expect(theGoodParts.genre).toEqual("Programming");
+    expect(theGoodParts.pageCount).toEqual(140);
   });
 });
